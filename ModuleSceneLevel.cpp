@@ -13,7 +13,16 @@
 ModuleSceneLevel::ModuleSceneLevel(bool start_enabled) : Module(start_enabled)
 {
 	// Set up the level
+	level.x = 0;
+	level.w = 1000;
+	level.y = 395;
+	level.h = 195;
 
+	background.x = 0;
+	background.w = 700;
+	background.y = 195;
+	background.h = 0;
+	
 }
 
 ModuleSceneLevel::~ModuleSceneLevel()
@@ -24,6 +33,10 @@ bool ModuleSceneLevel::Start()
 {
 	LOG("Loading level scene");
 	
+	graphics = App->textures->Load("Sprites/Niveles/Level1.png");
+
+
+	App->audio->PlayMusic("Audio/Final Fight Stage 1.mp3", 1.0f);
 	
 	return true;
 }
@@ -43,6 +56,7 @@ bool ModuleSceneLevel::CleanUp()
 update_status ModuleSceneLevel::Update()
 {
 	// Paint the level
+	App->renderer->Blit(graphics, 0, 0, &level);
 
 	return UPDATE_CONTINUE;
 }

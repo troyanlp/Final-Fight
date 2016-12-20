@@ -37,7 +37,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	graphics = App->textures->Load("Bomberman.png");
+	graphics = App->textures->Load("Sprites/Personajes/FF_Cody.png");
 
 	return true;
 }

@@ -20,9 +20,8 @@ public:
 public:
 	
 	SDL_Texture* graphics = nullptr;
-	SDL_Rect ground;
+	SDL_Rect level;
 	SDL_Rect background;
-	Animation flag;
 };
 
 #endif // __MODULESCENELEVEL_H__

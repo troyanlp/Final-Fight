@@ -13,6 +13,7 @@ class ModuleAudio;
 class ModuleFadeToBlack;
 class ModulePlayer;
 class ModuleSceneKen;
+class ModuleSceneLevel;
 
 class Application
 {

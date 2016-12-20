@@ -40,6 +40,6 @@ enum update_status
 #define SCREEN_SIZE 2
 #define FULLSCREEN false
 #define VSYNC true
-#define TITLE "Bomberman"
+#define TITLE "Final Fight"
 
 #endif //__GLOBALS_H__
