@@ -5,7 +5,11 @@
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleSceneLevel.h"
+#include "ModuleCollision.h"
+#include "ModuleParticles.h"
+
+#include "ModuleSceneIntro.h"
+#include "ModuleSceneLevel1.h"
 #include "ModulePlayer.h"
 
 using namespace std;
@@ -21,8 +25,13 @@ Application::Application()
 	modules.push_back(audio = new ModuleAudio());
 
 	// Game Modules
-	modules.push_back(scene_level = new ModuleSceneLevel(false));
+	modules.push_back(scene_intro = new ModuleSceneIntro(false));
+	modules.push_back(scene_space = new ModuleSceneLevel1(false));
 	modules.push_back(player = new ModulePlayer(false));
+
+	// Modules to draw on top of game logic
+	modules.push_back(collision = new ModuleCollision());
+	modules.push_back(particles = new ModuleParticles());
 	modules.push_back(fade = new ModuleFadeToBlack());
 }
 
@@ -46,7 +55,7 @@ bool Application::Init()
 	}
 
 	// Start the first scene --
-	fade->FadeToBlack(scene_level, nullptr, 3.0f);
+	fade->FadeToBlack(scene_intro, nullptr, 3.0f);
 
 	return ret;
 }
