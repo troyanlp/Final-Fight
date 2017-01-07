@@ -21,7 +21,17 @@ bool ModuleSceneLevel1::Start()
 {
 	LOG("Loading Level 1 scene");
 	
-	background = App->textures->Load("Sprites/Niveles/FF_Stage1.png");
+	graphics = App->textures->Load("Sprites/Niveles/FF_Stage1.png");
+
+	level.x = 265;
+	level.y = 4;
+	level.h = 194;
+	level.w = 991;
+
+	city.x = 4;
+	city.y = 4;
+	city.h = 194;
+	city.w = 255;
 
 	//App->player->Enable();
 	//App->particles->Enable();
@@ -40,7 +50,7 @@ bool ModuleSceneLevel1::CleanUp()
 {
 	LOG("Unloading space scene");
 
- 	App->textures->Unload(background);
+ 	App->textures->Unload(graphics);
 	//App->player->Disable();
 	//App->collision->Disable();
 	//App->particles->Disable();
@@ -59,7 +69,10 @@ update_status ModuleSceneLevel1::Update()
 	//App->renderer->camera.x -= 3;
 	
 	// Draw everything --------------------------------------
-	App->renderer->Blit(background, 0, 0, NULL);
+	for (int i = 0; i < 4; i++) App->renderer->Blit(graphics, 0 + (i * city.w)-1, 0, &city, 0.75f);
+	App->renderer->Blit(graphics, 0, SCREEN_HEIGHT - level.h, &level, 0.75f);
+	
+	//App->renderer->Blit(graphics, 0, 0, NULL);
 	
 	return UPDATE_CONTINUE;
 }

@@ -5,6 +5,7 @@
 
 struct SDL_Texture;
 
+
 class ModuleSceneLevel1 : public Module
 {
 public:
@@ -17,8 +18,9 @@ public:
 
 public:
 	
-	SDL_Texture* background = nullptr;
-	SDL_Texture* stars = nullptr;
+	SDL_Texture* graphics = nullptr;
+	SDL_Rect level;
+	SDL_Rect city;
 };
 
 #endif // __MODULESCENELEVEL1_H__
