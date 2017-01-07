@@ -21,6 +21,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading space intro");
 	
 	background = App->textures->Load("Sprites/intro.png");
+	background = App->textures->Load("Sprites/start.png");
 
 	//App->audio->PlayMusic("rtype/intro.ogg", 1.0f);
 	//if(fx == 0)

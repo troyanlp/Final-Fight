@@ -18,6 +18,7 @@ public:
 public:
 	
 	SDL_Texture* background = nullptr;
+	SDL_Rect* start = nullptr;
 	uint fx = 0;
 };
 
