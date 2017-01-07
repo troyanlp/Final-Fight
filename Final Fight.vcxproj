@@ -83,6 +83,7 @@
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleSceneIntro.h" />
     <ClInclude Include="ModuleSceneLevel1.h" />
+    <ClInclude Include="ModuleSceneSelection.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="Point.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
     <ClCompile Include="ModuleSceneLevel1.cpp" />
+    <ClCompile Include="ModuleSceneSelection.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>

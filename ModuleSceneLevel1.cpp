@@ -21,11 +21,11 @@ bool ModuleSceneLevel1::Start()
 {
 	LOG("Loading Level 1 scene");
 	
-	background = App->textures->Load("rtype/background.png");
+	background = App->textures->Load("Sprites/Niveles/FF_Stage1.png");
 
-	App->player->Enable();
-	App->particles->Enable();
-	App->collision->Enable();
+	//App->player->Enable();
+	//App->particles->Enable();
+	//App->collision->Enable();
 
 	//App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 	
@@ -41,9 +41,9 @@ bool ModuleSceneLevel1::CleanUp()
 	LOG("Unloading space scene");
 
  	App->textures->Unload(background);
-	App->player->Disable();
-	App->collision->Disable();
-	App->particles->Disable();
+	//App->player->Disable();
+	//App->collision->Disable();
+	//App->particles->Disable();
 	
 	return true;
 }
@@ -54,9 +54,9 @@ update_status ModuleSceneLevel1::Update()
 	// Move camera forward -----------------------------
 	int scroll_speed = 1;
 
-	App->player->position.x += 1;
-	App->player->collider->SetPos(App->player->position.x, App->player->position.y);
-	App->renderer->camera.x -= 3;
+	//App->player->position.x += 1;
+	//App->player->collider->SetPos(App->player->position.x, App->player->position.y);
+	//App->renderer->camera.x -= 3;
 	
 	// Draw everything --------------------------------------
 	App->renderer->Blit(background, 0, 0, NULL);

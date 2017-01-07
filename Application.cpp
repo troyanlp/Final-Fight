@@ -9,6 +9,7 @@
 #include "ModuleParticles.h"
 
 #include "ModuleSceneIntro.h"
+#include "ModuleSceneSelection.h"
 #include "ModuleSceneLevel1.h"
 #include "ModulePlayer.h"
 
@@ -26,7 +27,8 @@ Application::Application()
 
 	// Game Modules
 	modules.push_back(scene_intro = new ModuleSceneIntro(false));
-	modules.push_back(scene_space = new ModuleSceneLevel1(false));
+	modules.push_back(scene_selection = new ModuleSceneSelection(false));
+	modules.push_back(scene_level1 = new ModuleSceneLevel1(false));
 	modules.push_back(player = new ModulePlayer(false));
 
 	// Modules to draw on top of game logic

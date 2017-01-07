@@ -7,8 +7,6 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneIntro.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModuleSceneIntro::ModuleSceneIntro(bool active) : Module(active)
 {}
 
@@ -21,7 +19,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading space intro");
 	
 	background = App->textures->Load("Sprites/intro.png");
-	background = App->textures->Load("Sprites/start.png");
+	//background = App->textures->Load("Sprites/start.png");
 
 	//App->audio->PlayMusic("rtype/intro.ogg", 1.0f);
 	//if(fx == 0)
@@ -49,7 +47,7 @@ update_status ModuleSceneIntro::Update()
 
 	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && App->fade->isFading() == false)
 	{
-		App->fade->FadeToBlack((Module*)App->scene_space, this);
+		App->fade->FadeToBlack((Module*)App->scene_selection, this);
 		App->audio->PlayFx(fx);
 	}
 

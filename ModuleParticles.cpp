@@ -142,13 +142,13 @@ bool Particle::Update()
 	// TODO 5: This is the core of the particle functionality.
 	// Return false if the particle must be destroyed
 	
-	if (SDL_GetTicks() >= (initial_frame + time_to_live)) {
+	/*if (SDL_GetTicks() >= (initial_frame + time_to_live)) {
 		to_delete = true;
 		ret = false;
 	}
 	else {
 		position.x += speed;
-	}
+	}*/
 
 	return ret;
 }
