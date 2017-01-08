@@ -24,7 +24,7 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Animation idle;
-	Animation up;
+	Animation walk;
 	Animation down;
 	iPoint position;
 	bool destroyed = false;

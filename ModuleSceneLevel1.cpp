@@ -33,7 +33,7 @@ bool ModuleSceneLevel1::Start()
 	city.h = 194;
 	city.w = 255;
 
-	//App->player->Enable();
+	App->player->Enable();
 	//App->particles->Enable();
 	//App->collision->Enable();
 
@@ -51,7 +51,7 @@ bool ModuleSceneLevel1::CleanUp()
 	LOG("Unloading space scene");
 
  	App->textures->Unload(graphics);
-	//App->player->Disable();
+	App->player->Disable();
 	//App->collision->Disable();
 	//App->particles->Disable();
 	

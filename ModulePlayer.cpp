@@ -12,11 +12,30 @@
 
 ModulePlayer::ModulePlayer(bool active) : Module(active)
 {
-	// idle animation (just the ship)
-	/*idle.frames.push_back({66, 1, 32, 14});
+	// idle animation 
+	idle.frames.push_back({ 31,	25,	86,	59});
+
+	//Walk
+	walk.frames.push_back({ 117, 26, 46, 58});
+	walk.frames.push_back({ 187, 26, 61, 92});
+	walk.frames.push_back({ 270, 28, 61, 93});
+	walk.frames.push_back({ 358, 30, 48, 93});
+
+	walk.frames.push_back({ 436, 27, 30, 94});
+	walk.frames.push_back({ 504, 28, 29, 93});
+	walk.frames.push_back({ 563, 27, 46, 92});
+	walk.frames.push_back({ 634, 28, 61, 92});
+
+	walk.frames.push_back({ 721, 30, 60, 92});
+	walk.frames.push_back({ 805, 31, 50, 91});
+	walk.frames.push_back({ 883, 28, 30, 94});
+	walk.frames.push_back({ 941, 28, 31, 91});
+	
+
+
 
 	// move upwards
-	up.frames.push_back({100, 1, 32, 14});
+	/*up.frames.push_back({100, 1, 32, 14});
 	up.frames.push_back({132, 0, 32, 14});
 	up.loop = false;
 	up.speed = 0.1f;
@@ -38,11 +57,11 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	/*graphics = App->textures->Load("rtype/ship.png");
-
+	graphics = App->textures->Load("Sprites/Personajes/Cody.gif");
+	
 	destroyed = false;
 	position.x = 150;
-	position.y = 120;*/
+	position.y = 120;
 
 	// Collider
 	/*
@@ -130,6 +149,8 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if(destroyed == false)
 		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));*/
+	current_animation = &idle;
+	App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	return UPDATE_CONTINUE;
 }
