@@ -45,6 +45,24 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	skyHook.frames.push_back({ 668, 325, 82, 78});
 	skyHook.frames.push_back({ 774, 315, 79, 91});
 	skyHook.frames.push_back({ 874, 293, 55, 111});
+
+	//Jump
+	jump.frames.push_back({ 32, 186, 53, 82});
+	jump.frames.push_back({ 125, 156, 41, 107});
+	jump.frames.push_back({ 199, 156, 54, 76});
+	jump.frames.push_back({ 283, 159, 69, 85});
+	jump.frames.push_back({ 32, 186, 53, 82 });
+
+	//Jump Forward
+	jumpForward.frames.push_back({ 32, 186, 53, 82 });
+	jumpForward.frames.push_back({ 125, 156, 41, 107});
+	jumpForward.frames.push_back({ 199, 156, 54, 76});
+	jumpForward.frames.push_back({ 283, 159, 69, 85});
+	jumpForward.frames.push_back({ 377, 171, 81, 52});
+	jumpForward.frames.push_back({ 488, 161, 64, 60});
+	jumpForward.frames.push_back({ 582, 167, 81, 52});
+	jumpForward.frames.push_back({ 697, 167, 64, 60});
+	jumpForward.frames.push_back({ 32, 186, 53, 82 });
 	
 }
 
@@ -150,7 +168,7 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if(destroyed == false)
 		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));*/
-	current_animation = &skyHook;
+	current_animation = &jumpForward;
 	App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.1f);
 	/*if (frames/100 == 1) {
 		frames = 0;

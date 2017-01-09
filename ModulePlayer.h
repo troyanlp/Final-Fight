@@ -28,6 +28,8 @@ public:
 	Animation simplePunch;
 	Animation strongPunch;
 	Animation skyHook;
+	Animation jump;
+	Animation jumpForward;
 	iPoint position;
 	bool destroyed = false;
 	Collider* collider;
