@@ -39,20 +39,12 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	strongPunch.frames.push_back({ 237, 321, 67, 81});
 	strongPunch.frames.push_back({ 333, 324, 110, 78});
 
-
-
-	// move upwards
-	/*up.frames.push_back({100, 1, 32, 14});
-	up.frames.push_back({132, 0, 32, 14});
-	up.loop = false;
-	up.speed = 0.1f;
-
-	// Move down
-	down.frames.push_back({33, 1, 32, 14});
-	down.frames.push_back({0, 1, 32, 14});
-	down.loop = false;
-	down.speed = 0.1f;*/
-
+	//Sky Hook
+	skyHook.frames.push_back({ 465, 320, 67, 81});
+	skyHook.frames.push_back({ 559, 334, 78, 70});
+	skyHook.frames.push_back({ 668, 325, 82, 78});
+	skyHook.frames.push_back({ 774, 315, 79, 91});
+	skyHook.frames.push_back({ 874, 293, 55, 111});
 	
 }
 
@@ -68,7 +60,7 @@ bool ModulePlayer::Start()
 	
 	destroyed = false;
 	position.x = 100;
-	position.y = 120;
+	position.y = 100;
 
 	frames = 1;
 
@@ -158,7 +150,7 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if(destroyed == false)
 		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));*/
-	current_animation = &strongPunch;
+	current_animation = &skyHook;
 	App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.1f);
 	/*if (frames/100 == 1) {
 		frames = 0;

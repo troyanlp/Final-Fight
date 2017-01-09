@@ -27,7 +27,7 @@ public:
 	Animation walk;
 	Animation simplePunch;
 	Animation strongPunch;
-	Animation hookPunch;
+	Animation skyHook;
 	iPoint position;
 	bool destroyed = false;
 	Collider* collider;
