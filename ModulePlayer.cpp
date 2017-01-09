@@ -201,9 +201,10 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 
 	// Draw everything --------------------------------------
-	SDL_RenderSetScale(App->renderer->renderer, 0.9f, 0.9f);
+	//SDL_RenderSetScale(App->renderer->renderer, 0.1f, 0.1f);
+	SDL_RenderCopyEx(App->renderer->renderer, graphics, &(current_animation->GetCurrentFrame()), &(current_animation->GetCurrentFrame()), 0, NULL, SDL_FLIP_HORIZONTAL);
 	if (destroyed == false) 
-		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+		//App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	//current_animation = &jumpForward;
 	//App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	/*if (frames/100 == 1) {
