@@ -20,24 +20,28 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	walk.frames.push_back({ 187, 26, 61, 93});
 	walk.frames.push_back({ 270, 28, 61, 94});
 	walk.frames.push_back({ 358, 30, 48, 94});
-
 	walk.frames.push_back({ 436, 27, 30, 95});
 	walk.frames.push_back({ 504, 28, 29, 94});
 	walk.frames.push_back({ 563, 27, 46, 93});
 	walk.frames.push_back({ 634, 28, 61, 93});
-
 	walk.frames.push_back({ 721, 30, 60, 93});
 	walk.frames.push_back({ 805, 31, 50, 93});
 	walk.frames.push_back({ 883, 28, 30, 94});
 	walk.frames.push_back({ 941, 28, 31, 92});
+	
+	walk.speed = 0.2f;
 
 	//Simple Punch
 	simplePunch.frames.push_back({ 29, 316, 63, 90});
 	simplePunch.frames.push_back({ 127, 313, 83, 90});
 
+	simplePunch.speed = 0.2f;
+
 	//Strong Punch
 	strongPunch.frames.push_back({ 237, 321, 67, 81});
 	strongPunch.frames.push_back({ 333, 324, 110, 78});
+
+	strongPunch.speed = 0.15f;
 
 	//Sky Hook
 	skyHook.frames.push_back({ 465, 320, 67, 81});
@@ -46,6 +50,8 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	skyHook.frames.push_back({ 774, 315, 79, 91});
 	skyHook.frames.push_back({ 874, 293, 55, 111});
 
+	skyHook.speed = 0.2f;
+
 	//Jump
 	jump.frames.push_back({ 32, 186, 53, 82});
 	jump.frames.push_back({ 125, 156, 41, 107});
@@ -53,8 +59,10 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	jump.frames.push_back({ 283, 159, 69, 85});
 	jump.frames.push_back({ 32, 186, 53, 82 });
 
+	jump.speed = 0.15f;
+
 	//Jump Forward
-	jumpForward.frames.push_back({ 32, 186, 53, 82 });
+	jumpForward.frames.push_back({ 32, 186, 53, 82});
 	jumpForward.frames.push_back({ 125, 156, 41, 107});
 	jumpForward.frames.push_back({ 199, 156, 54, 76});
 	jumpForward.frames.push_back({ 283, 159, 69, 85});
@@ -62,7 +70,9 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	jumpForward.frames.push_back({ 488, 161, 64, 60});
 	jumpForward.frames.push_back({ 582, 167, 81, 52});
 	jumpForward.frames.push_back({ 697, 167, 64, 60});
-	jumpForward.frames.push_back({ 32, 186, 53, 82 });
+	jumpForward.frames.push_back({ 32, 186, 53, 82});
+
+	jumpForward.speed = 0.15f;
 	
 }
 
@@ -111,65 +121,70 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	/*int speed = 1;
+	int speed = 1;
 
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		position.x -= speed;
-		collider->rect = { position.x, position.y, 30, 10 };
+		current_animation = &walk;
+		//collider->rect = { position.x, position.y, 30, 10 };
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		position.x += speed;
-		collider->rect = { position.x, position.y, 30, 10 };
+		current_animation = &walk;
+		//collider->rect = { position.x, position.y, 30, 10 };
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		position.y += speed;
-		if(current_animation != &down)
+		position.y -= speed;
+		current_animation = &walk;
+		/*if(current_animation != &down)
 		{
 			down.Reset();
 			current_animation = &down;
 		}
-		collider->rect = { position.x, position.y, 30, 10 };
+		collider->rect = { position.x, position.y, 30, 10 };*/
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		position.y -= speed;
-		if(current_animation != &up)
+		position.y += speed;
+		current_animation = &walk;
+		/*if(current_animation != &up)
 		{
 			up.Reset();
 			current_animation = &up;
 		}
-		collider->rect = { position.x, position.y, 30, 10 };
+		collider->rect = { position.x, position.y, 30, 10 };*/
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if(App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
 	{
-		// TODO 6: Shoot a laser using the particle system
-		App->particles->AddParticle(App->particles->laser, position.x, position.y);
+		current_animation = &jump;
 	}
 
-
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
 	{
-		// TODO 6: Shoot a laser using the particle system
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-		//Die();
+		current_animation = &simplePunch;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE
-	   && App->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
+	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_IDLE
+	   && App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_IDLE
+		&& App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE
+		&& App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_IDLE
+		&& App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE
+		&& App->input->GetKey(SDL_SCANCODE_Z) == KEY_IDLE
+		&& App->input->GetKey(SDL_SCANCODE_X) == KEY_IDLE)
 		current_animation = &idle;
 
 	// Draw everything --------------------------------------
 	if(destroyed == false)
-		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));*/
-	current_animation = &jumpForward;
-	App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.1f);
+		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	//current_animation = &jumpForward;
+	//App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	/*if (frames/100 == 1) {
 		frames = 0;
 		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.1f);
