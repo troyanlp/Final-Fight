@@ -128,7 +128,7 @@ Particle::Particle(const Particle& p)
 
 Particle::~Particle()
 {
-	collider->to_delete = true;
+	//collider->to_delete = true;
 	to_delete = true;
 }
 

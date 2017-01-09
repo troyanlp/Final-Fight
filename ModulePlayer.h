@@ -29,6 +29,7 @@ public:
 	iPoint position;
 	bool destroyed = false;
 	Collider* collider;
+	int frames;
 };
 
 #endif
