@@ -7,6 +7,7 @@
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
+#include "SDL/include/SDL.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -121,25 +122,26 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int speed = 1;
+	float speedX = 0.75f;
+	float speedY = 0.5f;
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-		position.x -= speed;
+		position.x -= speedX;
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		position.x += speed;
+		position.x += speedX;
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		position.y -= speed;
+		position.y -= speedY;
 		current_animation = &walk;
 		/*if(current_animation != &down)
 		{
@@ -151,7 +153,7 @@ update_status ModulePlayer::Update()
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		position.y += speed;
+		position.y += speedY;
 		current_animation = &walk;
 		/*if(current_animation != &up)
 		{
@@ -165,6 +167,24 @@ update_status ModulePlayer::Update()
 	{
 		current_animation = &jump;
 	}
+
+	/*if (keyDown(KEY_SPACE)) {
+		jumping = true;
+		oldY = yPos;
+	}
+	if (jumping) {
+		jumpSum += jumpSpeed;    tracks the amount of jumping
+			if (jumpSum >= jumpHeight)
+				jumpSpeed = -jumpSpeed;
+		if (jumpSum <= 0) {
+			jumpSum = 0;    // Reset for next time
+			jumpSpeed = -jumpSpeed;    // Or: jumpSpeed = abs(jumpSpeed);
+			yPos = oldY - jumpSpeed;   // In case jumpSum was > 0 and is now < 0
+			jumping = false;
+		}
+		yPos += jumpSpeed;
+	}*/
+
 
 	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
 	{
@@ -181,7 +201,8 @@ update_status ModulePlayer::Update()
 		current_animation = &idle;
 
 	// Draw everything --------------------------------------
-	if(destroyed == false)
+	SDL_RenderSetScale(App->renderer->renderer, 0.9f, 0.9f);
+	if (destroyed == false) 
 		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	//current_animation = &jumpForward;
 	//App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));

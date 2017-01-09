@@ -30,7 +30,7 @@ public:
 	Animation skyHook;
 	Animation jump;
 	Animation jumpForward;
-	iPoint position;
+	fPoint position;
 	bool destroyed = false;
 	Collider* collider;
 	int frames;

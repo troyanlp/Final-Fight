@@ -70,7 +70,7 @@ update_status ModuleSceneLevel1::Update()
 	
 	// Draw everything --------------------------------------
 	for (int i = 0; i < 4; i++) App->renderer->Blit(graphics, 0 + (i * city.w)-1, 0, &city, 0.75f);
-	App->renderer->Blit(graphics, 0, SCREEN_HEIGHT - level.h, &level, 0.75f);
+	App->renderer->Blit(graphics, 0, SCREEN_HEIGHT - level.h, &level, 0.1f);
 	
 	//App->renderer->Blit(graphics, 0, 0, NULL);
 	
