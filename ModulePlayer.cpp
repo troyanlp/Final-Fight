@@ -30,7 +30,14 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	walk.frames.push_back({ 805, 31, 50, 93});
 	walk.frames.push_back({ 883, 28, 30, 94});
 	walk.frames.push_back({ 941, 28, 31, 92});
-	
+
+	//Simple Punch
+	simplePunch.frames.push_back({ 29, 316, 63, 90});
+	simplePunch.frames.push_back({ 127, 313, 83, 90});
+
+	//Strong Punch
+	strongPunch.frames.push_back({ 237, 321, 67, 81});
+	strongPunch.frames.push_back({ 333, 324, 110, 78});
 
 
 
@@ -60,7 +67,7 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Sprites/Personajes/FF_Cody.png");
 	
 	destroyed = false;
-	position.x = 150;
+	position.x = 100;
 	position.y = 120;
 
 	frames = 1;
@@ -151,14 +158,15 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	if(destroyed == false)
 		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));*/
-	current_animation = &walk;
-	if (frames/100 == 1) {
+	current_animation = &strongPunch;
+	App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.1f);
+	/*if (frames/100 == 1) {
 		frames = 0;
 		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.1f);
 	}
 	else {
 		frames++;
-	}
+	}*/
 
 	return UPDATE_CONTINUE;
 }

@@ -25,7 +25,9 @@ public:
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation walk;
-	Animation down;
+	Animation simplePunch;
+	Animation strongPunch;
+	Animation hookPunch;
 	iPoint position;
 	bool destroyed = false;
 	Collider* collider;
