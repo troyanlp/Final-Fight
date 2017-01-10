@@ -129,6 +129,8 @@ update_status ModulePlayer::Update()
 	{
 		facing = false;
 		position.x -= speedX;
+		if(App->renderer->camera.x < LEVEL1_CAM_MIN) App->renderer->camera.x += 15;
+		LOG("Posicion de la cámara: %d", App->renderer->camera.x);
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
 	}
@@ -137,6 +139,8 @@ update_status ModulePlayer::Update()
 	{
 		facing = true;
 		position.x += speedX;
+		if (App->renderer->camera.x > LEVEL1_CAM_MAX) App->renderer->camera.x -= 15;
+		LOG("Posicion de la cámara: %d", App->renderer->camera.x);
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
 	}
@@ -207,7 +211,7 @@ update_status ModulePlayer::Update()
 	//SDL_RenderSetScale(App->renderer->renderer, 0.1f, 0.1f);
 	//SDL_RenderCopyEx(App->renderer->renderer, graphics, &(current_animation->GetCurrentFrame()), &(current_animation->GetCurrentFrame()), 0, NULL, SDL_FLIP_HORIZONTAL);
 	if (destroyed == false) 
-		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), !facing);
+		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), !facing, 0.2f);
 
 	return UPDATE_CONTINUE;
 }

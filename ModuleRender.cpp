@@ -109,7 +109,6 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section,bo
 	rect.w *= SCREEN_SIZE;
 	rect.h *= SCREEN_SIZE;
 
-	LOG("El valor de flip es %d", flip);
 	if (flip == false) {
 		flipValue = SDL_FLIP_NONE;
 	}

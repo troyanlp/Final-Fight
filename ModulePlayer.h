@@ -37,4 +37,7 @@ public:
 	int frames;
 };
 
+#define LEVEL1_CAM_MIN 0
+#define LEVEL1_CAM_MAX -2940
+
 #endif
