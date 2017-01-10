@@ -49,6 +49,6 @@ typedef unsigned int uint;
 //512x448
 #define FULLSCREEN false
 #define VSYNC true
-#define TITLE "Super Awesome Game"
+#define TITLE "Final Fight"
 
 #endif //__GLOBALS_H__
