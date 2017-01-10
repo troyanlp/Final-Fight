@@ -31,6 +31,7 @@ public:
 	Animation jump;
 	Animation jumpForward;
 	fPoint position;
+	bool facing = true; 
 	bool destroyed = false;
 	Collider* collider;
 	int frames;

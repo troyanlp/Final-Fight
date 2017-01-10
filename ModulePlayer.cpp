@@ -127,6 +127,7 @@ update_status ModulePlayer::Update()
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
+		facing = false;
 		position.x -= speedX;
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
@@ -134,6 +135,7 @@ update_status ModulePlayer::Update()
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
+		facing = true;
 		position.x += speedX;
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
@@ -200,20 +202,12 @@ update_status ModulePlayer::Update()
 		&& App->input->GetKey(SDL_SCANCODE_X) == KEY_IDLE)
 		current_animation = &idle;
 
+	
 	// Draw everything --------------------------------------
 	//SDL_RenderSetScale(App->renderer->renderer, 0.1f, 0.1f);
-	SDL_RenderCopyEx(App->renderer->renderer, graphics, &(current_animation->GetCurrentFrame()), &(current_animation->GetCurrentFrame()), 0, NULL, SDL_FLIP_HORIZONTAL);
+	//SDL_RenderCopyEx(App->renderer->renderer, graphics, &(current_animation->GetCurrentFrame()), &(current_animation->GetCurrentFrame()), 0, NULL, SDL_FLIP_HORIZONTAL);
 	if (destroyed == false) 
-		//App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	//current_animation = &jumpForward;
-	//App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	/*if (frames/100 == 1) {
-		frames = 0;
-		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), 0.1f);
-	}
-	else {
-		frames++;
-	}*/
+		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), !facing);
 
 	return UPDATE_CONTINUE;
 }

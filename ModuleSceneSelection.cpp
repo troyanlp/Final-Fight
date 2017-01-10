@@ -56,10 +56,10 @@ update_status ModuleSceneSelection::Update()
 	}
 
 	if (!character) {
-		App->renderer->Blit(cody, 0, 0, NULL);
+		App->renderer->Blit(cody, 0, 0, NULL, false);
 	}
 	else {
-		App->renderer->Blit(haggar, 0, 0, NULL);
+		App->renderer->Blit(haggar, 0, 0, NULL, false);
 	}
 	
 

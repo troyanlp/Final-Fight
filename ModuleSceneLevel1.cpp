@@ -69,8 +69,8 @@ update_status ModuleSceneLevel1::Update()
 	//App->renderer->camera.x -= 3;
 	
 	// Draw everything --------------------------------------
-	for (int i = 0; i < 4; i++) App->renderer->Blit(graphics, 0 + (i * city.w)-1, 0, &city, 0.75f);
-	App->renderer->Blit(graphics, 0, SCREEN_HEIGHT - level.h, &level, 0.1f);
+	for (int i = 0; i < 4; i++) App->renderer->Blit(graphics, 0 + (i * city.w)-1, 0, &city,false, 0.75f);
+	App->renderer->Blit(graphics, 0, SCREEN_HEIGHT - level.h, &level,false, 0.1f);
 	
 	//App->renderer->Blit(graphics, 0, 0, NULL);
 	
