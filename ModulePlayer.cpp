@@ -118,6 +118,9 @@ bool ModulePlayer::Start()
 	position.x = 100;
 	position.y = 100;
 
+	collider = new Collider({ position.x, position.y, 30, 10 });
+	App->collision->AddCollider(collider->rect);
+
 	maxCamera = SCREEN_WIDTH;
 
 	// Collider

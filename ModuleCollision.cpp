@@ -81,9 +81,11 @@ bool ModuleCollision::CleanUp()
 	return true;
 }
 
-Collider* ModuleCollision::AddCollider(const SDL_Rect& rect)
+Collider* ModuleCollision::AddCollider(const Collider c)
 {
-	Collider* ret = new Collider(rect);
+	Collider* ret = new Collider(c.rect);
+	ret->z = c.z;
+	ret->depth = c.depth;
 
 	colliders.push_back(ret);
 
@@ -101,10 +103,28 @@ Collider* ModuleCollision::AddCollider(const SDL_Rect& rect)
 
 // -----------------------------------------------------
 
-bool Collider::CheckCollision(const SDL_Rect& r) const
+bool Collider::CheckCollision(const Collider c) const
 {
-	// TODO 7: Create by hand (avoid consulting the internet) a simple collision test
-	// Return true if the argument and the own rectangle are intersecting
+	if (z > c.z && z < (c.z + c.depth) 
+		|| (z + depth) > c.z && (z + depth) < (c.z + c.depth)
+		|| z > c.z && (z + depth) > (c.z + c.depth)) {
+		
+		if (rect.x >= c.rect.x && rect.x < (c.rect.x + c.rect.w)
+			|| (rect.x + rect.w) > c.rect.x && (rect.x + rect.w) < (c.rect.x + c.rect.w)
+			|| rect.x < c.rect.x && (rect.x + rect.w) > (c.rect.x + c.rect.w)) {
+
+			if (rect.y > c.rect.y && rect.y < (c.rect.y + c.rect.h)
+				|| (rect.y + rect.h) > c.rect.y && (rect.y + rect.h) < (c.rect.y + c.rect.h)
+				|| rect.y < c.rect.y && (rect.y + rect.h) > (c.rect.y + c.rect.h) ) {
+
+				LOG("HAY COLISION!");
+
+			}
+
+		}
+
+	}
+
 	if (rect.x >= r.x && rect.x <= (rect.x + rect.w)) {
 		if (rect.y >= r.y && rect.y <= (rect.y + rect.h)) {
 			return true;
