@@ -5,7 +5,6 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
-#include "ModuleParticles.h"
 #include "ModuleSceneLevel1.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA

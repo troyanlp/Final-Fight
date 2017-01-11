@@ -34,11 +34,15 @@ public:
 	Animation fall;
 	Animation tryGetUp;
 	Animation getUp;
-	fPoint position;
+	SDL_Rect currentFrame;
+	iPoint position;
 	float maxCamera;
 	bool facing = true; 
 	bool destroyed = false;
 	Collider* collider;
+	bool canAttack = true;
+	float cooldown = 2.5f;
+	float timerAttack = 0;
 };
 
 #define LEVEL1_CAM_MIN 0

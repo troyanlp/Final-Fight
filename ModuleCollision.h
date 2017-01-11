@@ -11,8 +11,8 @@
 struct Collider
 {
 	SDL_Rect rect = { 0,0,0,0 };
-	float z = 0;
-	float depth = 0;
+	int z = 0;
+	int depth = 0;
 	bool to_delete = false;
 
 	// TODO 10: Add a way to notify other classes that a collision happened
@@ -22,7 +22,7 @@ struct Collider
 		rect(rectangle)
 	{}
 
-	void SetPos(float x, float y, float z)
+	void SetPos(int x, int y, int z)
 	{
 		rect.x = x;
 		rect.y = y;
@@ -48,7 +48,7 @@ public:
 
 	bool CleanUp();
 
-	Collider* AddCollider(const Collider c);
+	Collider* AddCollider(const SDL_Rect rect, const int z, const int depth);
 	//void RemoveCollider(Collider* c);
 	void DebugDraw();
 

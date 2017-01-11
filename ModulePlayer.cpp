@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
-#include "ModuleParticles.h"
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
@@ -118,23 +117,11 @@ bool ModulePlayer::Start()
 	position.x = 100;
 	position.y = 100;
 
-	collider = new Collider({ position.x, position.y, 30, 10 });
-	App->collision->AddCollider(collider->rect);
+	//collider = new Collider({ position.x, position.y, 30, 10 });
+	//free(collider);
+	collider = App->collision->AddCollider({ position.x, position.y, 30, 10 }, 0, 0);
 
 	maxCamera = SCREEN_WIDTH;
-
-	// Collider
-	/*
-	SDL_Rect texture;
-	texture.x = position.x;
-	texture.y = position.y;
-	texture.w = 30;
-	texture.h = 10;
-	collider = App->collision->AddCollider(texture);*/
-	//collider = new Collider({ position.x, position.y, 30, 10 });
-	//App->collision->AddCollider(collider->rect);
-	
-	//collider = App->collision->AddCollider({ position.x, position.y, 30, 10 });
 
 	return true;
 }
@@ -152,8 +139,10 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	float speedX = 0.85f;
-	float speedY = 0.5f;
+	//float speedX = 0.85f;
+	int speedX = 1;
+	//float speedY = 0.5f;
+	int speedY = 1;
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
@@ -209,29 +198,28 @@ update_status ModulePlayer::Update()
 	if(App->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN)
 	{
 		current_animation = &jump;
-	}
-
-	/*if (keyDown(KEY_SPACE)) {
-		jumping = true;
-		oldY = yPos;
-	}
-	if (jumping) {
-		jumpSum += jumpSpeed;    tracks the amount of jumping
-			if (jumpSum >= jumpHeight)
-				jumpSpeed = -jumpSpeed;
-		if (jumpSum <= 0) {
-			jumpSum = 0;    // Reset for next time
-			jumpSpeed = -jumpSpeed;    // Or: jumpSpeed = abs(jumpSpeed);
-			yPos = oldY - jumpSpeed;   // In case jumpSum was > 0 and is now < 0
-			jumping = false;
+		
+	}else if (!canAttack){
+		timerAttack += 0.1f;
+		if (timerAttack == cooldown) {
+			timerAttack = 0;
+			canAttack = true;
 		}
-		yPos += jumpSpeed;
-	}*/
+	}
 
 
-	if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
-	{
-		current_animation = &simplePunch;
+	if (canAttack) {
+		if (App->input->GetKey(SDL_SCANCODE_X) == KEY_DOWN)
+		{
+			current_animation = &simplePunch;
+			canAttack = false;
+		}
+	}else {
+		timerAttack += 0.1f;
+		if (timerAttack >= cooldown) {
+			timerAttack = 0;
+			canAttack = true;
+		}
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_IDLE
@@ -247,8 +235,18 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	//SDL_RenderSetScale(App->renderer->renderer, 0.1f, 0.1f);
 	//SDL_RenderCopyEx(App->renderer->renderer, graphics, &(current_animation->GetCurrentFrame()), &(current_animation->GetCurrentFrame()), 0, NULL, SDL_FLIP_HORIZONTAL);
-	if (destroyed == false) 
-		App->renderer->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()), !facing, 0.2f);
+	if (destroyed == false) {
+		SDL_Rect f = current_animation->GetCurrentFrame();
+		currentFrame = f;
+		App->renderer->Blit(graphics, position.x, position.y, &(f), !facing, 0.2f);
+		//collider->rect = { position.x, position.y, currentFrame.w, currentFrame.h };
+		collider->rect.x = position.x;
+		collider->rect.y = position.y;
+		collider->rect.w = f.w;
+		collider->rect.h = f.h;
+	}
+
+	
 
 	return UPDATE_CONTINUE;
 }

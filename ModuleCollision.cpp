@@ -64,8 +64,9 @@ update_status ModuleCollision::Update()
 
 void ModuleCollision::DebugDraw()
 {
-	for (list<Collider*>::iterator it = colliders.begin(); it != colliders.end(); ++it)
-		App->renderer->DrawQuad((*it)->rect, 255, 0, 0, 80);
+	for (list<Collider*>::iterator it = colliders.begin(); it != colliders.end(); ++it) {
+		App->renderer->DrawQuad((*it)->rect, 255, 0, 0, 80); LOG("Las coordenadas del collider son: %d", (*it)->rect.x);
+	}
 }
 
 // Called before quitting
@@ -81,11 +82,11 @@ bool ModuleCollision::CleanUp()
 	return true;
 }
 
-Collider* ModuleCollision::AddCollider(const Collider c)
+Collider* ModuleCollision::AddCollider(const SDL_Rect rect, const int z, const int depth)
 {
-	Collider* ret = new Collider(c.rect);
-	ret->z = c.z;
-	ret->depth = c.depth;
+	Collider* ret = new Collider(rect);
+	ret->z = z;
+	ret->depth = depth;
 
 	colliders.push_back(ret);
 
@@ -123,12 +124,6 @@ bool Collider::CheckCollision(const Collider c) const
 
 		}
 
-	}
-
-	if (rect.x >= r.x && rect.x <= (rect.x + rect.w)) {
-		if (rect.y >= r.y && rect.y <= (rect.y + rect.h)) {
-			return true;
-		}
 	}
 
 

@@ -6,7 +6,6 @@
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollision.h"
-#include "ModuleParticles.h"
 
 #include "ModuleSceneIntro.h"
 #include "ModuleSceneSelection.h"
@@ -33,7 +32,6 @@ Application::Application()
 
 	// Modules to draw on top of game logic
 	modules.push_back(collision = new ModuleCollision());
-	modules.push_back(particles = new ModuleParticles());
 	modules.push_back(fade = new ModuleFadeToBlack());
 }
 
