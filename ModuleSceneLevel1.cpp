@@ -34,11 +34,12 @@ bool ModuleSceneLevel1::Start()
 	city.w = 255;
 
 	App->player->Enable();
+	App->audio->Enable();
 	//App->particles->Enable();
 	App->collision->Enable();
 	App->enemy->Enable();
 
-	//App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
+	App->audio->PlayMusic("Audio/Final Fight Stage 1.mp3", 1.0f);
 	
 	// TODO 15: create some colliders for the walls
 	// solution wall coords: {0, 224, 3930, 16} {1375, 0, 111, 96} {1375, 145, 111, 96}

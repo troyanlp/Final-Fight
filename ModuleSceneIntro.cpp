@@ -20,7 +20,7 @@ bool ModuleSceneIntro::Start()
 	
 	background = App->textures->Load("Sprites/intro.png");
 	//background = App->textures->Load("Sprites/start.png");
-
+	App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 	//App->audio->PlayMusic("rtype/intro.ogg", 1.0f);
 	//if(fx == 0)
 	//	fx = App->audio->LoadFx("rtype/starting.wav");
