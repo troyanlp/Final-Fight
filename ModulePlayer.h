@@ -30,11 +30,14 @@ public:
 	Animation skyHook;
 	Animation jump;
 	Animation jumpForward;
+	Animation receiveHit;
+	Animation fall;
+	Animation tryGetUp;
+	Animation getUp;
 	fPoint position;
 	bool facing = true; 
 	bool destroyed = false;
 	Collider* collider;
-	int frames;
 };
 
 #define LEVEL1_CAM_MIN 0

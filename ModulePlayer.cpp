@@ -74,6 +74,33 @@ ModulePlayer::ModulePlayer(bool active) : Module(active)
 	jumpForward.frames.push_back({ 32, 186, 53, 82});
 
 	jumpForward.speed = 0.15f;
+
+	//Receive hit
+	receiveHit.frames.push_back({ 26, 712, 54, 84});
+	receiveHit.frames.push_back({ 31, 25, 59, 93});
+
+	receiveHit.speed = 0.2f;
+
+	//Fall
+	fall.frames.push_back({ 112, 700, 60, 96});
+	fall.frames.push_back({ 214, 704, 94, 52});
+	fall.frames.push_back({ 337, 753, 116, 36});
+
+	fall.speed = 0.2f;
+
+	//Try to get up
+	tryGetUp.frames.push_back({ 337,753,116,36});
+	tryGetUp.frames.push_back({ 481, 759, 93, 34});
+
+	tryGetUp.speed = 0.2f;
+
+	//Get up
+	getUp.frames.push_back({ 337,753,116,36 });
+	getUp.frames.push_back({ 481, 759, 93, 34 });
+	getUp.frames.push_back({ 602, 739, 53, 59});
+	getUp.frames.push_back({ 31, 25, 59, 93});
+
+	getUp.speed = 0.2f;
 	
 }
 
@@ -90,8 +117,6 @@ bool ModulePlayer::Start()
 	destroyed = false;
 	position.x = 100;
 	position.y = 100;
-
-	frames = 1;
 
 	// Collider
 	/*
@@ -129,8 +154,7 @@ update_status ModulePlayer::Update()
 	{
 		facing = false;
 		position.x -= speedX;
-		if(App->renderer->camera.x < LEVEL1_CAM_MIN) App->renderer->camera.x += 15;
-		LOG("Posicion de la cámara: %d", App->renderer->camera.x);
+		//if(App->renderer->camera.x < LEVEL1_CAM_MIN) App->renderer->camera.x += 15;
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
 	}
@@ -140,7 +164,6 @@ update_status ModulePlayer::Update()
 		facing = true;
 		position.x += speedX;
 		if (App->renderer->camera.x > LEVEL1_CAM_MAX) App->renderer->camera.x -= 15;
-		LOG("Posicion de la cámara: %d", App->renderer->camera.x);
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
 	}
