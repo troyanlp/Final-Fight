@@ -11,6 +11,7 @@
 struct Collider
 {
 	SDL_Rect rect = { 0,0,0,0 };
+	float z = 0;
 	bool to_delete = false;
 
 	// TODO 10: Add a way to notify other classes that a collision happened
@@ -20,10 +21,11 @@ struct Collider
 		rect(rectangle)
 	{}
 
-	void SetPos(int x, int y)
+	void SetPos(float x, float y, float z)
 	{
 		rect.x = x;
 		rect.y = y;
+		Collider::z = z;
 	}
 
 	bool CheckCollision(const SDL_Rect& r) const;

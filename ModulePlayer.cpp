@@ -118,6 +118,8 @@ bool ModulePlayer::Start()
 	position.x = 100;
 	position.y = 100;
 
+	maxCamera = SCREEN_WIDTH;
+
 	// Collider
 	/*
 	SDL_Rect texture;
@@ -163,7 +165,16 @@ update_status ModulePlayer::Update()
 	{
 		facing = true;
 		position.x += speedX;
-		if (App->renderer->camera.x > LEVEL1_CAM_MAX) App->renderer->camera.x -= 15;
+		LOG("La posicion del player es: %f", position.x);
+		if (App->renderer->camera.x > LEVEL1_CAM_MAX) {
+			App->renderer->camera.x -= 20;
+			if (position.x > maxCamera-100) {
+				//App->renderer->camera.x -= 500;
+				//if (App->renderer->camera.x < LEVEL1_CAM_MAX) App->renderer->camera.x = LEVEL1_CAM_MAX;
+				//maxCamera += 50;
+			}
+			
+		}
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
 	}

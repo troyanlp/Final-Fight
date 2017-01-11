@@ -35,6 +35,7 @@ public:
 	Animation tryGetUp;
 	Animation getUp;
 	fPoint position;
+	float maxCamera;
 	bool facing = true; 
 	bool destroyed = false;
 	Collider* collider;

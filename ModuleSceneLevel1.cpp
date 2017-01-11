@@ -35,7 +35,7 @@ bool ModuleSceneLevel1::Start()
 
 	App->player->Enable();
 	//App->particles->Enable();
-	//App->collision->Enable();
+	App->collision->Enable();
 
 	//App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 	
