@@ -157,7 +157,7 @@ update_status ModulePlayer::Update()
 	{
 		facing = true;
 		position.x += speedX;
-		LOG("La posicion del player es: %f", position.x);
+		//LOG("La posicion del player es: %f", position.x);
 		if (App->renderer->camera.x > LEVEL1_CAM_MAX) {
 			App->renderer->camera.x -= 20;
 			if (position.x > maxCamera-100) {

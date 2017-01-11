@@ -37,9 +37,14 @@ update_status ModuleCollision::Update()
 	// TODO 8: Check collisions between all colliders. 
 	// After making it work, review that you are doing the minumum checks possible
 	//LOG("El size es: %d", colliders.size());
-	/*for (list<Collider*>::iterator it = colliders.begin(); it != colliders.end();)
+	std::list<Collider*>::iterator it = colliders.begin();
+	
+	for (int i = 0; i < colliders.size(); ++i)
 	{
-		Collider* c1 = *it;
+		LOG("Colliders size es: %d", colliders.size());
+		LOG("i es: %d", i);
+		std::advance(it, 1);
+		/*Collider* c1 = *it;
 		for (list<Collider*>::iterator jt = colliders.begin(); jt != colliders.end();)
 		{
 			Collider* c2 = *jt;
@@ -49,8 +54,8 @@ update_status ModuleCollision::Update()
 					c1->to_delete = true;
 				}
 			}
-		}
-	}*/
+		}*/
+	}
 
 
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
@@ -65,7 +70,7 @@ update_status ModuleCollision::Update()
 void ModuleCollision::DebugDraw()
 {
 	for (list<Collider*>::iterator it = colliders.begin(); it != colliders.end(); ++it) {
-		App->renderer->DrawQuad((*it)->rect, 255, 0, 0, 80); LOG("Las coordenadas del collider son: %d", (*it)->rect.x);
+		App->renderer->DrawQuad((*it)->rect, 255, 0, 0, 80); //LOG("Las coordenadas del collider son: %d", (*it)->rect.x);
 	}
 }
 
@@ -89,6 +94,7 @@ Collider* ModuleCollision::AddCollider(const SDL_Rect rect, const int z, const i
 	ret->depth = depth;
 
 	colliders.push_back(ret);
+	//LOG("El size de colliders es: %d", colliders.size());
 
 	return ret;
 }

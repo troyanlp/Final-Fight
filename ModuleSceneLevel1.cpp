@@ -41,6 +41,8 @@ bool ModuleSceneLevel1::Start()
 	// TODO 15: create some colliders for the walls
 	// solution wall coords: {0, 224, 3930, 16} {1375, 0, 111, 96} {1375, 145, 111, 96}
 
+	test = App->collision->AddCollider({ 200, 0, 300, 100 }, 0, 0);
+
 	return true;
 }
 

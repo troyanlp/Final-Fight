@@ -21,6 +21,7 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect level;
 	SDL_Rect city;
+	Collider* test;
 };
 
 #endif // __MODULESCENELEVEL1_H__
