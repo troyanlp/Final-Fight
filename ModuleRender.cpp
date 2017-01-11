@@ -3,6 +3,7 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModulePlayer.h"
 #include "SDL/include/SDL.h"
 
 ModuleRender::ModuleRender()
@@ -49,20 +50,18 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
-	// debug camera
-	/*int speed = 1;
+	//debug camera
+	int speed = 15;
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		App->renderer->camera.y += speed;
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		App->renderer->camera.x += speed; 
+		//App->player->position.x -= speed;
+	}
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		App->renderer->camera.y -= speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->renderer->camera.x += speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->renderer->camera.x -= speed;*/
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+		App->renderer->camera.x -= speed;
+		//App->player->position.x += speed;
+	}
 
 	return UPDATE_CONTINUE;
 }

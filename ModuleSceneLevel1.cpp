@@ -4,6 +4,7 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemy.h"
 #include "ModuleCollision.h"
 #include "ModuleSceneLevel1.h"
 
@@ -35,13 +36,14 @@ bool ModuleSceneLevel1::Start()
 	App->player->Enable();
 	//App->particles->Enable();
 	App->collision->Enable();
+	App->enemy->Enable();
 
 	//App->audio->PlayMusic("rtype/stage1.ogg", 1.0f);
 	
 	// TODO 15: create some colliders for the walls
 	// solution wall coords: {0, 224, 3930, 16} {1375, 0, 111, 96} {1375, 145, 111, 96}
 
-	test = App->collision->AddCollider({ 200, 0, 300, 100 }, 0, 0);
+	//test = App->collision->AddCollider({ 200, 0, 300, 100 }, 0, 0);
 
 	return true;
 }

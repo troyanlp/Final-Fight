@@ -15,6 +15,7 @@ class ModuleCollision;
 
 // Game modules ---
 class ModulePlayer;
+class ModuleEnemy;
 class ModuleSceneIntro;
 class ModuleSceneSelection;
 class ModuleSceneLevel1;
@@ -41,6 +42,7 @@ public:
 
 	// Game modules ---
 	ModulePlayer* player;
+	ModuleEnemy* enemy;
 	ModuleSceneIntro* scene_intro;
 	ModuleSceneSelection* scene_selection;
 	ModuleSceneLevel1* scene_level1;

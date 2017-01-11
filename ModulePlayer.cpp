@@ -147,7 +147,7 @@ update_status ModulePlayer::Update()
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		facing = false;
-		position.x -= speedX;
+		ModulePlayer::position.x -= speedX;
 		//if(App->renderer->camera.x < LEVEL1_CAM_MIN) App->renderer->camera.x += 15;
 		current_animation = &walk;
 		//collider->rect = { position.x, position.y, 30, 10 };
@@ -156,10 +156,10 @@ update_status ModulePlayer::Update()
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		facing = true;
-		position.x += speedX;
+		ModulePlayer::position.x += speedX;
 		//LOG("La posicion del player es: %f", position.x);
 		if (App->renderer->camera.x > LEVEL1_CAM_MAX) {
-			App->renderer->camera.x -= 20;
+			//App->renderer->camera.x -= 20;
 			if (position.x > maxCamera-100) {
 				//App->renderer->camera.x -= 500;
 				//if (App->renderer->camera.x < LEVEL1_CAM_MAX) App->renderer->camera.x = LEVEL1_CAM_MAX;
@@ -238,7 +238,7 @@ update_status ModulePlayer::Update()
 	if (destroyed == false) {
 		SDL_Rect f = current_animation->GetCurrentFrame();
 		currentFrame = f;
-		App->renderer->Blit(graphics, position.x, position.y, &(f), !facing, 0.2f);
+		App->renderer->Blit(graphics, position.x, position.y, &(f), !facing);
 		//collider->rect = { position.x, position.y, currentFrame.w, currentFrame.h };
 		collider->rect.x = position.x;
 		collider->rect.y = position.y;

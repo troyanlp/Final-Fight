@@ -39,7 +39,7 @@ update_status ModuleCollision::Update()
 	//LOG("El size es: %d", colliders.size());
 	std::list<Collider*>::iterator it = colliders.begin();
 	
-	for (int i = 0; i < colliders.size(); ++i)
+/*	for (int i = 0; i < colliders.size(); ++i)
 	{
 		LOG("Colliders size es: %d", colliders.size());
 		LOG("i es: %d", i);
@@ -55,7 +55,7 @@ update_status ModuleCollision::Update()
 				}
 			}
 		}*/
-	}
+	//}
 
 
 	if(App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
